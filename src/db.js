@@ -24,9 +24,8 @@ const connect = async () => {
 
 const ingest = async (logData) => {
   try {
-    const logEntry = new Log({ message: logData });
+    const logEntry = new Log(logData);
     await logEntry.save();
-    console.log('Log entry inserted:', logEntry);
   } catch (error) {
     console.error('Error inserting log entry:', error.message);
     return false;
@@ -43,6 +42,11 @@ const constructQuery = (filters) => {
   if(filters.traceId) query.traceId = filters.traceId;
   if(filters.spanId) query.spanId = filters.spanId;
   if(filters.commit) query.commit = filters.commit;
+  if(filters.startTime) query.timestamp = { $gte: new Date(filters.startTime) };
+  if(filters.endTime) query.timestamp = { 
+    ...query.timestamp,
+    $lt: new Date(filters.endTime)
+  };
   // console.log(query);
   return query;
 };

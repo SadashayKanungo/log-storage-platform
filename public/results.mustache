@@ -16,7 +16,7 @@
     <p class="text-muted">Query Results: <strong>{{logsCount}}</strong></p>
 
     <!-- Table for Search Results -->
-    <table class="table table-striped mx-auto" style="max-width:90%;">
+    <table class="table table-striped mx-auto small">
         <thead class="bg-primary text-light">
         <tr>
             <th scope="col">Level</th>
@@ -26,7 +26,7 @@
             <th scope="col">Span ID</th>
             <th scope="col">Commit</th>
             <th scope="col">Parent Resource ID</th>
-            <!-- <th scope="col">Timestamp</th> -->
+            <th scope="col">Timestamp</th>
         </tr>
         </thead>
         <tbody>
@@ -39,10 +39,9 @@
                 <td>{{spanId}}</td>
                 <td>{{commit}}</td>
                 <td>{{metadata.parentResourceId}}</td>
-                <!-- <td class="small">{{timestamp}}</td> -->
+                <td class="small">{{timestampString}}</td>
             </tr>
         {{/logsData}}
-        <!-- Add more rows as needed with actual data -->
         </tbody>
     </table>
 </div>

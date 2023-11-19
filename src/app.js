@@ -31,9 +31,9 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
     try{
-        db.ingest(req.body);
+        await db.ingest(req.body);
         res.status(200).send();
     } catch(error){
         res.status(500).send();
@@ -46,6 +46,7 @@ app.get('/query', async (req, res) => {
         const renderedHTML = mustache.render(resultsTemplate, {logsCount: results.length, logsData: results});
         res.send(renderedHTML); 
     } catch(error){
+        console.log(error);
         res.status(500).send();
     }
 });

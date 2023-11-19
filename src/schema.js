@@ -42,10 +42,19 @@ const logSchema = new mongoose.Schema({
       index: true,
     },
   },
-});
+}, {
+    virtuals: {
+      timestampString: {
+        get() {
+          return this.timestamp.toISOString();
+        }
+      }
+    }
+  });
 
 // Ensure the compound text index on the 'message' field
 logSchema.index({ message: 'text' });
+logSchema.index({ timestamp: -1 });
 
 const Log = mongoose.model('Log', logSchema);
 

@@ -30,11 +30,6 @@
                 <input type="text" class="form-control" id="resourceId" name="resourceId">
             </div>
 
-            <!-- <div class="form-group">
-                <label for="timestamp" class="text-dark">Timestamp:</label>
-                <input type="text" class="form-control" id="timestamp" name="timestamp">
-            </div> -->
-
             <div class="form-group">
                 <label for="traceId" class="text-dark">Trace ID:</label>
                 <input type="text" class="form-control" id="traceId" name="traceId">
@@ -55,6 +50,21 @@
                 <input type="text" class="form-control" id="parentResourceId" name="parentResourceId">
             </div>
 
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label for="startTime">Start Time:</label>
+                    <input type="datetime-local" id="startTime" name="startTime" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a valid start time.</div>
+                </div>
+    
+                <div class="col-md-6">
+                    <label for="endTime">End Time:</label>
+                    <input type="datetime-local" id="endTime" name="endTime" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a valid end time.</div>
+                </div>
+            </div>
+
+
             <div class="form-group text-center">
                 <button type="button" class="btn btn-primary mt-2" onclick="submitForm()">Search</button>
             </div>
@@ -65,7 +75,7 @@
 <script>
     function submitForm() {
         // Construct the URL with parameters
-        const keys = ['message', 'commit', 'level', 'traceId', 'spanId', 'resourceId', 'parentResourceId'];
+        const keys = ['message', 'commit', 'level', 'traceId', 'spanId', 'resourceId', 'parentResourceId', 'startTime', 'endTime'];
         const inputs = keys.flatMap((k) => k + '=' + encodeURIComponent(document.getElementById(k).value));
         const url = '/query?' + inputs.join('&');
         //console.log(url);
