@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyte Logs</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light text-dark">
+
+<div class="container mt-3">
+    <h1 class="text-center text-primary">Dyte Logs</h1>
+
+    <!-- Display the count of records -->
+    <p class="text-muted">Query Results: <strong>{{logsCount}}</strong></p>
+
+    <!-- Table for Search Results -->
+    <table class="table table-striped mx-auto" style="max-width:90%;">
+        <thead class="bg-primary text-light">
+        <tr>
+            <th scope="col">Level</th>
+            <th scope="col">Message</th>
+            <th scope="col">Resource ID</th>
+            <th scope="col">Trace ID</th>
+            <th scope="col">Span ID</th>
+            <th scope="col">Commit</th>
+            <th scope="col">Parent Resource ID</th>
+            <!-- <th scope="col">Timestamp</th> -->
+        </tr>
+        </thead>
+        <tbody>
+        {{#logsData}}
+            <tr>
+                <td>{{level}}</td>
+                <td>{{message}}</td>
+                <td>{{resourceId}}</td>
+                <td>{{traceId}}</td>
+                <td>{{spanId}}</td>
+                <td>{{commit}}</td>
+                <td>{{metadata.parentResourceId}}</td>
+                <!-- <td class="small">{{timestamp}}</td> -->
+            </tr>
+        {{/logsData}}
+        <!-- Add more rows as needed with actual data -->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
