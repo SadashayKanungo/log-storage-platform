@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Log = require("./schema");
-require('dotenv').config(); // Load environment variables from .env file
 
-const mongodbUri = process.env.MONGODB_URI;
+const mongodbUri = process.env.MONGODB_URI || "mongodb://localhost:27017/";
 
 const connect = async () => {
   try {
